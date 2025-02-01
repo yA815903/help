@@ -3,106 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assistive Apps</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Accessibility Assistant</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Instructions Section -->
-    <section id="instructions">
-        <h2>How to Use</h2>
-        <p>Welcome to Assistive Apps! This app provides three main features:</p>
-        <ul>
-            <li><strong>Voice-Controlled Assistant:</strong> Use voice commands to control your device.</li>
-            <li><strong>AR Subtitles:</strong> Get real-time subtitles for conversations.</li>
-            <li><strong>Image to Speech:</strong> Take a picture and have the text read to you.</li>
-        </ul>
-        <p>Click the buttons below to start using each feature.</p>
-        <button id="read-instructions-btn">Read Instructions</button>
-    </section>
-
-    <!-- Voice-Controlled Assistant Section -->
-    <section id="voice-assistant">
-        <h1>Voice-Controlled Assistant</h1>
-        <button id="voice-start-btn">Start Listening</button>
-        <p id="command-output"></p>
-        <p id="voice-status"></p>
-    </section>
-    
-    <!-- AR Subtitles Section -->
-    <section id="ar-subtitles">
-        <h1>AR Subtitles</h1>
-        <button id="ar-start-btn">Start Listening</button>
-        <div id="subtitle"></div>
-        <p id="ar-status"></p>
-    </section>
-
-    <!-- Image to Speech Section -->
-    <section id="image-to-speech">
-        <h1>Image to Speech</h1>
-        <input type="file" id="image-input" accept="image/*">
-        <button id="read-image-btn">Read Image</button>
-        <button id="stop-reading-btn">Stop Reading</button>
-        <p id="image-text-output"></p>
-        <div id="progress-indicator" aria-live="polite"></div>
-    </section>
-
-    <!-- Settings Section -->
-    <section id="settings">
-        <h2>Settings</h2>
-        <label for="language-select">Language:</label>
-        <select id="language-select">
-            <option value="en-US">English (US)</option>
-            <option value="en-GB">English (UK)</option>
-            <option value="es-ES">Spanish</option>
-            <!-- Add more languages as needed -->
-        </select>
-        <br>
-        <label for="contrast-toggle">High Contrast Mode:</label>
-        <input type="checkbox" id="contrast-toggle">
-        <br>
-        <label for="dark-mode-toggle">Dark Mode:</label>
-        <input type="checkbox" id="dark-mode-toggle">
-        <br>
-        <label for="text-size-select">Text Size:</label>
-        <select id="text-size-select">
-            <option value="small">Small</option>
-            <option value="medium" selected>Medium</option>
-            <option value="large">Large</option>
-            <option value="x-large">Extra Large</option>
-        </select>
-    </section>
-
-    <!-- Help Section -->
-    <section id="help">
-        <h2>Help</h2>
-        <p>Find answers to common questions and troubleshooting tips.</p>
-        <button id="open-faq-btn">Open FAQ</button>
-    </section>
-
-    <!-- Feedback Section -->
-    <section id="feedback">
-        <h2>Feedback</h2>
-        <p>We value your feedback. Please let us know how we can improve.</p>
-        <form id="feedback-form">
-            <label for="feedback-text">Your Feedback:</label>
-            <textarea id="feedback-text" rows="4" cols="50"></textarea>
-            <br>
-            <button type="submit">Submit Feedback</button>
-        </form>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Assistive Apps. All rights reserved.</p>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.1.1/dist/tesseract.min.js"></script>
-    <script src="voice-script.js"></script>
-    <script src="ar-script.js"></script>
-    <script src="settings.js"></script>
-    <script src="image-script.js"></script>
-    <script src="instructions.js"></script>
-    <script src="help.js"></script>
-    <script src="feedback.js"></script>
+    <body>
+        <div class="container">
+            <h2>Accessibility Assistant</h2>
+            <button onclick="startSpeechRecognition()">Voice Control</button>
+            <button onclick="readText()">Read Text Aloud</button>
+            <button onclick="toggleDarkMode()">Toggle Dark Mode</button>
+            <button onclick="toggleLargeText()">Toggle Large Text</button>
+            <button onclick="translateText()">Translate Text</button>
+            <button onclick="openHelp()">Help</button>
+            <textarea id="textInput" placeholder="Type text to read aloud..."></textarea>
+            <button onclick="readUserText()">Read User Input</button>
+            <input type="file" accept="image/*" onchange="extractTextFromImage(event)">
+            <video id="video" controls>
+                <track id="subtitleTrack" label="English" kind="subtitles" srclang="en" src="subtitles.vtt" default>
+            </video>
+        </div>
 </body>
 </html>
